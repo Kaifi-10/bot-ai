@@ -66,7 +66,12 @@ function SideBar() {
     )
 
     return (
-        <Box sx={{ width: '100vw', height: '100vh', display: 'flex',  alignItems: 'flex-start' }}>
+        <Box sx={{ 
+        width: '100vw', 
+        // width: '20%', 
+        height: '100vh', 
+        display: 'flex',  
+        alignItems: 'flex-start' }}>
             {isMobile ? (
                 <>
                     <IconButton

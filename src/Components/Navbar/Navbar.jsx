@@ -6,10 +6,11 @@ function Navbar() {
   return (
     <Box sx={{ width: '100%', display: 'flex' }}>
       <Box sx={{ width: '20%' }}>
-        <SideBar />
+        {/* <SideBar /> */}
       </Box>
       <Box sx={{ width: '80%', display: 'flex', alignItems: 'flex-start' }}>
         <Typography sx={{
+            width:'50px',
           color: '#9785BA',
           fontFamily: 'Ubuntu, sans-serif',
           fontWeight: 700,
@@ -20,9 +21,13 @@ function Navbar() {
           marginTop:'20px',
           marginLeft: {
             xs: '10px', 
-            sm: '25px', 
+            sm: '-20px', 
+            md: '100px',
+            lg: '150px',
            
         },
+        transition: 'margin-left 0.3s ease',
+        whiteSpace: 'nowrap',
         }}>
           Bot AI
         </Typography>
