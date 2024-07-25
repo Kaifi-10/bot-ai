@@ -1,6 +1,8 @@
 import { Box, Typography } from '@mui/material'
 import React from 'react'
 import logo from '../../assets/bot.png'
+import DefaultCard from '../DefaultCard/DefaultCard'
+import styles from './HomePage.module.css'
 
 function HomePage() {
 
@@ -28,7 +30,12 @@ function HomePage() {
   ]
 
   return (
-    <Box backgroundColor='linear-gradient(180deg, rgba(215, 199, 244, 0.2) 0%, rgba(151, 133, 186, 0.2) 100%)'>
+    <Box sx={{ 
+      display: 'flex', 
+      flexDirection: 'column', 
+      alignItems: 'center',
+      // padding: theme.spacing(2)
+    }}>
         <Typography sx={{
           font: "Ubuntu",
           fontWeight: 700,
@@ -37,6 +44,8 @@ function HomePage() {
           color: '#000000',
           textAlign: 'center',
           marginBottom: '20px',
+          marginTop: '30px',
+          textWrap:'wrap',
         }}>
           How Can I Help You Today?
         </Typography>
@@ -47,6 +56,20 @@ function HomePage() {
           left: '679.72px',
           borderRadius: '50%',
         }}/>
+        <Box className={styles.DefaultCardContainer} sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          marginTop: '20px',
+          width: {xs:'', md:'40%', sm:'60%', lg:'80%', xl:'100%'},
+        }}>
+          {sampleData.map((data) => (
+            <DefaultCard key={data.id} question={data.question} response={data.response} />
+          ))}
+
+        </Box>
+      
+        
     </Box>
   )
 }

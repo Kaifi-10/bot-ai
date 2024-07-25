@@ -1,0 +1,37 @@
+.cardContainer{
+    width: 720px ;
+    height: 150px;
+    top: 476px;
+    left: 222px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    background: #FFFFFF;
+    text-align: left;
+    margin: 10px;
+    margin-bottom: 30px;
+    margin-left: 20px;
+
+
+}
+
+.question{
+    font: 'Ubuntu' !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    line-height: 22.98px !important;
+    color: #000000;
+    margin: 10px !important;
+    padding-top: 10px !important;
+    text-wrap: wrap;
+}
+
+.aiGenerated{
+    font: 'open sans' !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 21.79px !important;
+    color: #00000080;
+    margin: 10px !important;
+    text-wrap: wrap;
+
+}
