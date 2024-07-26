@@ -3,6 +3,7 @@ import React from 'react'
 import logo from '../../assets/bot.png'
 import DefaultCard from '../DefaultCard/DefaultCard'
 import styles from './HomePage.module.css'
+import InputBox from '../InputBox/InputBox'
 
 function HomePage() {
 
@@ -34,8 +35,19 @@ function HomePage() {
       display: 'flex', 
       flexDirection: 'column', 
       alignItems: 'center',
+      width: '78vw',
+      justifyContent: 'flex-end',
+      height: '95vh',
+      paddingBottom: '20px',
       // padding: theme.spacing(2)
     }}>
+
+      <Box sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        maxWidth: '100%', // Ensures content doesn't overflow horizontally
+      }}>
         <Typography sx={{
           font: "Ubuntu",
           fontWeight: 700,
@@ -64,14 +76,20 @@ function HomePage() {
           justifyContent: 'center',
           marginTop: '20px',
           width: {xs:'', md:'40%', sm:'60%', lg:'80%', xl:'100%'},
-          marginLeft: '70px'
+          marginLeft: '70px',
+          // maxWidth: '1200px',
         }}>
           {sampleData.map((data) => (
             <DefaultCard key={data.id} question={data.question} response={data.response} />
           ))}
 
         </Box>
-      
+        <Box sx={{
+         
+        }}>
+          <InputBox />
+        </Box>
+      </Box>
         
     </Box>
   )
