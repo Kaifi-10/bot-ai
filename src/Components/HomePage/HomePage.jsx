@@ -46,6 +46,7 @@ function HomePage() {
           marginBottom: '20px',
           marginTop: '30px',
           textWrap:'wrap',
+          marginLeft:'70px'
         }}>
           How Can I Help You Today?
         </Typography>
@@ -55,6 +56,7 @@ function HomePage() {
           top:' 240px',
           left: '679.72px',
           borderRadius: '50%',
+          marginLeft:'70px'
         }}/>
         <Box className={styles.DefaultCardContainer} sx={{
           display: 'flex',
@@ -62,6 +64,7 @@ function HomePage() {
           justifyContent: 'center',
           marginTop: '20px',
           width: {xs:'', md:'40%', sm:'60%', lg:'80%', xl:'100%'},
+          marginLeft: '70px'
         }}>
           {sampleData.map((data) => (
             <DefaultCard key={data.id} question={data.question} response={data.response} />
