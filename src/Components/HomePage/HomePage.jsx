@@ -4,8 +4,11 @@ import logo from '../../assets/bot.png'
 import DefaultCard from '../DefaultCard/DefaultCard'
 import styles from './HomePage.module.css'
 import InputBox from '../InputBox/InputBox'
+import ChatCard from '../ChatCard/ChatCard'
 
 function HomePage() {
+
+
 
   const sampleData = [
     {
@@ -48,6 +51,10 @@ function HomePage() {
         alignItems: 'center',
         maxWidth: '100%', // Ensures content doesn't overflow horizontally
       }}>
+        {/* testing */}
+        {/* <ChatCard user={you}/> */}
+
+        {/* testing */}
         <Typography sx={{
           font: "Ubuntu",
           fontWeight: 700,

@@ -19,7 +19,6 @@ function App() {
           }}>
             <Box sx={{ 
               width: '80%',
-              zIndex: 1, 
               }}>  
               
               <SideBar />

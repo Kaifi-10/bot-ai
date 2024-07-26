@@ -1,0 +1,35 @@
+.chatCardardContainer{
+    width: 70vw;
+    height: 105px;
+    top: 168px;
+    left: 236.31px;
+    border-radius: 20px;
+    background: #D7C7F421;
+    display: flex;
+    justify-content: flex-start;
+    margin: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+
+}
+
+
+
+.cardPerson{
+    width: 65.3px;
+    height: 69px;
+    top: 186px;
+    left: 258.07px;
+    border-radius: 50%;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.chatCardardText{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
