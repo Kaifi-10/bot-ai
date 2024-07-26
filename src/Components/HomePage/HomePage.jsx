@@ -63,8 +63,11 @@ function HomePage() {
           How Can I Help You Today?
         </Typography>
         <Box component='img' src={logo} sx={{
-          width: '134.38px',
-          height: '142px',
+          // width: '134.38px',
+          // height: '142px',
+          width: {xs:'90px',  sm:'110px', md:'120px', lg:'134.38px'},
+          height: {xs:'90px',  sm:'115px', md:'125px', lg:'142px'},
+          transition: 'width, height 0.3s ease',
           top:' 240px',
           left: '679.72px',
           borderRadius: '50%',

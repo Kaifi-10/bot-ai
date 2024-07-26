@@ -7,7 +7,9 @@ function DefaultCard({question, response}) {
     <Box>
         <Box className={styles.cardContainer} sx={{
             width: {xs:'350px', md:'720px', sm:'500px'},
-            transition: 'margin 0.2s ease',
+            height: {xs:'100px', md:'120px', sm:'100px'},
+            transition: 'width, height 0.3s ease',
+            // transition: 'margin 0.2s ease',
         }}>
             <Typography className={styles.question} >
                 {question} 

@@ -28,6 +28,7 @@ function InputBox() {
         //   width: '100%',
         width: {xs:'21%',  sm:'32%', md:'48%', lg:'34%', xl:'100%'},
         marginLeft: { xs: '60px', sm: '55px', md:'65px', lg: '70px', xl: '0' },
+        transition: 'width, marginLeft 0.3s ease',
           maxWidth: isLargeScreen ? '1180px' : '100%',
           borderRadius: '8px',
           boxShadow: '0px 4px 4px 0px #00000040',
@@ -48,6 +49,7 @@ function InputBox() {
           marginTop: { xs: theme.spacing(2), sm: 0 },
         //   width: {xs:'20%', md:'40%', sm:'60%', lg:'50%', xl:'100%'},
         marginLeft: { xs: '60px', sm: '55px', md:'65px', lg: '10px', xl: '0' },
+        transition: 'marginLeft 0.3s ease',
         }}
       >
         <Button 
