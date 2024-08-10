@@ -1,4 +1,4 @@
-import { Box, Rating, Stack, Typography } from '@mui/material'
+import { Box, Modal, Rating, Stack, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import styles from './AiChatCard.module.css'
 import aiChat from '../../assets/newchat.png'
@@ -15,6 +15,8 @@ function AiChatCard() {
     const [rating, setRating] = useState(0);
     const [value, setValue] = useState(0);
     const [hasResponse, setHasResponse] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [feedbackText, setFeedbackText] = useState('');
 
     const handleThumbUp = () => {
         setThumbUp(!thumbUp);
@@ -26,6 +28,7 @@ function AiChatCard() {
         setThumbDown(!thumbDown);
         setThumbUp(false);
         setHasResponse(!thumbDown);
+        setIsModalOpen(true);
     };
 
     const handleRatingChange = (event, newValue) => {
@@ -36,6 +39,15 @@ function AiChatCard() {
     const handleRating = (e) =>{
         setRating(e.target.value);
     }
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleFeedbackSubmit = (text) => {
+        setFeedbackText(text);
+        setIsModalOpen(false);
+    };
 
     const date = new Date();
   return (
@@ -75,21 +87,33 @@ function AiChatCard() {
                             {thumbDown ? (
                                 <>
                                 <ThumbDownIcon onClick={handleThumbDown} style={{ color: 'black' }} />
-                                <Feedback />
+                                {/* <Feedback /> */}
                                 
                                 </>
                                 
                             ) : (
                                 <ThumbDownOffAltIcon onClick={handleThumbDown} />
                             )}
-
-                       
-
-                    </Box>
-                    
+                    </Box> 
                 </Typography>
+
+                {feedbackText && (
+                    <Typography className={styles.feedbackText}>
+                        Feedback: {feedbackText}
+                    </Typography>
+                )}
                 
             </Box>
+            <Modal
+                open={isModalOpen}
+                onClose={handleCloseModal}
+                aria-labelledby="feedback-modal"
+                aria-describedby="feedback-form"
+            >
+                <Box>
+                    <Feedback onSubmit={handleFeedbackSubmit} onClose={handleCloseModal} />
+                </Box>
+            </Modal>
 
         </Box>
         
