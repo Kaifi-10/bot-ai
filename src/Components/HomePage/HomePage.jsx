@@ -1,10 +1,14 @@
 import { Box, Typography } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import logo from '../../assets/bot.png'
 import DefaultCard from '../DefaultCard/DefaultCard'
 import styles from './HomePage.module.css'
 import InputBox from '../InputBox/InputBox'
 import ChatCard from '../ChatCard/ChatCard'
+
+import data from '../../apiData/SampleData.json'
+import AiChatCard from '../AiChatCard/AiChatCard'
+import Feedback from '../Feedback/Feedback'
 
 function HomePage() {
 
@@ -33,6 +37,41 @@ function HomePage() {
     }
   ]
 
+  const [selectedChatId, setSelectedChatId] = useState(null)
+  const [scrollToBottom, setScrollToBottom] = useState(false)
+  const [chatId, setChatId] = useState(1)
+  const [chat, setChat] = useState([])
+
+
+  const generateResponse = (input) => {
+
+    const response = data.find(item => input.toLowerCase() == item.question.toLowerCase())
+
+    let answer = "Sorry, Did not understand your query!"
+
+    if (response != undefined) {
+        answer = response.response
+    }
+
+    setChat(prev => ([...prev,
+    {
+        type: 'Human',
+        text: input,
+        time: new Date(),
+        id: chatId
+    },
+    {
+        type: 'AI',
+        text: answer,
+        time: new Date(),
+        id: chatId + 1
+    }
+    ]))
+
+    setChatId(prev => prev + 2)
+
+}
+
   return (
     <Box sx={{ 
       display: 'flex', 
@@ -53,6 +92,9 @@ function HomePage() {
       }}>
         {/* testing */}
         {/* <ChatCard user={you}/> */}
+        <ChatCard />
+        <AiChatCard />      
+        {/* <Feedback /> */}
 
         {/* testing */}
         <Typography sx={{

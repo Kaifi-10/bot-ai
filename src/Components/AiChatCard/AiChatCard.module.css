@@ -1,0 +1,86 @@
+.chatCardardContainer {
+    width: fit-content;
+    max-width: 70vw;
+    min-width: 300px;
+    height: auto;
+    min-height: 105px;
+    top: 168px;
+    left: 236.31px;
+    border-radius: 20px;
+    background: #D7C7F421;
+    display: flex;
+    justify-content: flex-start;
+    margin: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    transition: box-shadow 0.3s ease;
+}
+
+.chatCardardContainer:hover {
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.35);
+}
+
+.cardPerson {
+    width: 65.3px;
+    height: 69px;
+    top: 186px;
+    left: 258.07px;
+    border-radius: 50%;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chatCardardText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    padding: 10px;
+    flex: 1;
+}
+
+
+.contentText {
+    padding-right: 5px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.thumbs{
+    margin-left: 10px;
+    opacity: 0;
+    display: flex; 
+    align-items: center;
+    
+}
+
+/* .thumbs:hover{
+    opacity: 1;
+    cursor: pointer;
+    transition: opacity 0.4s ease;
+} */
+
+/* .thumbs:active{
+    color: black;
+    transition: opacity 0.4s ease;
+} */
+
+/* .chatCardardContainer:hover .thumbs {
+    opacity: 1;
+} */
+
+
+.chatCardardContainer:hover .thumbs,
+.thumbs.visible {
+    opacity: 1;
+}
+
+.thumbs.visible {
+    opacity: 1 !important;
+}
+
+.thumbs > * {
+    cursor: pointer;
+    margin: 0 5px;  
+}
