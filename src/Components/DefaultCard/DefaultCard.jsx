@@ -4,14 +4,15 @@ import styles from './DefaultCard.module.css'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 
 
-function DefaultCard({question, response}) {
+function DefaultCard({question, response, onClick}) {
   const [isHovering, setIsHovering] = useState(false);
 
   return (
     <Box>
         <Box className={styles.cardContainer} 
-        onMouseEnter={() => setIsHovering(true)} // Ensure this is on the correct element
-        onMouseLeave={() => setIsHovering(false)} // Ensure this is on the correct element
+        onMouseEnter={() => setIsHovering(true)} 
+        onMouseLeave={() => setIsHovering(false)} 
+        onClick={onClick}
         sx={{
             width: {xs:'350px', md:'720px', sm:'500px'},
             height: {xs:'100px', md:'120px', sm:'100px'},

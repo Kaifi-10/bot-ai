@@ -8,7 +8,7 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import Feedback from '../Feedback/Feedback';
 
-function AiChatCard() {
+function AiChatCard({response}) {
 
     const [thumbUp, setThumbUp] = useState(false);
     const [thumbDown, setThumbDown] = useState(false);
@@ -59,7 +59,7 @@ function AiChatCard() {
                     Soul Ai
                 </Typography>
                 <Typography className={styles.contentText}>
-                RESTful APIs are designed around the REST (Representational State Transfer) architecture, which uses HTTP requests to access and manipulate data. They follow a stateless, client-server, cacheable communications protocol.
+                {response}
                 
                 </Typography>
                 <Typography sx={{
@@ -107,8 +107,8 @@ function AiChatCard() {
             <Modal
                 open={isModalOpen}
                 onClose={handleCloseModal}
-                aria-labelledby="feedback-modal"
-                aria-describedby="feedback-form"
+                // aria-labelledby="feedback-modal"
+                // aria-describedby="feedback-form"
             >
                 <Box>
                     <Feedback onSubmit={handleFeedbackSubmit} onClose={handleCloseModal} />

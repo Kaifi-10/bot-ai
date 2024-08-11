@@ -19,6 +19,7 @@ function Navbar() {
           letterSpacing: '0.1px',
         //   marginLeft: '25px',
           marginTop:'20px',
+          marginBottom:'20px',
           marginLeft: {
             xs: '10px', 
             sm: '-20px', 

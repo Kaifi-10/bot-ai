@@ -1,9 +1,11 @@
 .chatCardardContainer {
     width: fit-content;
     max-width: 70vw;
-    min-width: 300px;
+    min-width: 70vw;
     height: auto;
     min-height: 105px;
+    /* width: 70vw;
+    height: 105px; */
     top: 168px;
     left: 236.31px;
     border-radius: 20px;

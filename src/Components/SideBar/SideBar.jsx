@@ -8,9 +8,10 @@ import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 
-function SideBar() {
+function SideBar( { showChat, setShowChat, setSelectedQuestion, setChatHistory }) {
     const isMobile = useMediaQuery('(max-width:1100px)')
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+    
 
     const toggleDrawer = (open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -19,6 +20,11 @@ function SideBar() {
         setIsDrawerOpen(open);
     };
 
+    const handleReturnHome = () => {
+        // setShowChat(false)
+        // setSelectedQuestion(null)
+        // setChatHistory([])
+    }
     const sidebarContent = (
         <Box sx={{
             width: isMobile ? '100%' : '20%',
@@ -32,11 +38,15 @@ function SideBar() {
                     marginLeft: '10px',
                     boxShadow: '0px 4px 4px 0px #00000040',
                     borderRadius: '10px',
-                }}/>
-                <Typography className={styles.newChat}>
+                }}
+                />
+                <Typography className={styles.newChat} >
                     New Chat
                 </Typography>
+                <Button onClick={handleReturnHome}>
                 <Box component='img' src={edit} alt='logo' />
+                </Button>
+                
             </Box>
             <Box sx={{
                 bgcolor: '#fff',

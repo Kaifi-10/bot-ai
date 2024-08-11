@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import logo from '../../assets/bot.png'
 import DefaultCard from '../DefaultCard/DefaultCard'
@@ -9,6 +9,7 @@ import ChatCard from '../ChatCard/ChatCard'
 import data from '../../apiData/SampleData.json'
 import AiChatCard from '../AiChatCard/AiChatCard'
 import Feedback from '../Feedback/Feedback'
+import SideBar from '../SideBar/SideBar'
 
 function HomePage() {
 
@@ -40,38 +41,37 @@ function HomePage() {
   const [selectedChatId, setSelectedChatId] = useState(null)
   const [scrollToBottom, setScrollToBottom] = useState(false)
   const [chatId, setChatId] = useState(1)
-  const [chat, setChat] = useState([])
+  const [selectedQuestion , setSelectecdQuestion] = useState(null)
+  const [showChat, setShowChat] = useState(false)
+  const [chatHistory, setChatHistory] = useState([])
 
+  const handleDefaultCardClick = (question, response) => {
+    setShowChat(true)
+    setChatHistory(prevHistory => [
+      ...prevHistory,
+      { type: 'Human', text: question, id: chatId },
+      { type: 'AI', text: response, id: chatId + 1 }
+    ])
+    setChatId(prev => prev + 2)
+  }
+
+  console.log(chatHistory)
 
   const generateResponse = (input) => {
-
-    const response = data.find(item => input.toLowerCase() == item.question.toLowerCase())
-
-    let answer = "Sorry, Did not understand your query!"
-
-    if (response != undefined) {
-        answer = response.response
-    }
-
-    setChat(prev => ([...prev,
-    {
-        type: 'Human',
-        text: input,
-        time: new Date(),
-        id: chatId
-    },
-    {
-        type: 'AI',
-        text: answer,
-        time: new Date(),
-        id: chatId + 1
-    }
-    ]))
-
+    const response = data.find(item => input.toLowerCase() === item.question.toLowerCase())
+    let answer = response ? response.response : "Sorry, I did not understand your query!"
+    setChatHistory(prevHistory => [
+      ...prevHistory,
+      { type: 'Human', text: input, id: chatId },
+      { type: 'AI', text: answer, id: chatId + 1 }
+    ])
     setChatId(prev => prev + 2)
+    setShowChat(true)
+  }
 
-}
 
+
+const homepageView = () => {
   return (
     <Box sx={{ 
       display: 'flex', 
@@ -92,8 +92,8 @@ function HomePage() {
       }}>
         {/* testing */}
         {/* <ChatCard user={you}/> */}
-        <ChatCard />
-        <AiChatCard />      
+        {/* <ChatCard />
+        <AiChatCard />       */}
         {/* <Feedback /> */}
 
         {/* testing */}
@@ -132,17 +132,73 @@ function HomePage() {
           // maxWidth: '1200px',
         }}>
           {sampleData.map((data) => (
-            <DefaultCard key={data.id} question={data.question} response={data.response} />
+            <DefaultCard
+             key={data.id} 
+             question={data.question} 
+             response={data.response} 
+             onClick={() => handleDefaultCardClick(data.question, data.response)}/>
           ))}
 
         </Box>
         <Box sx={{
          
         }}>
-          <InputBox />
+          <InputBox onSend={generateResponse} />
         </Box>
       </Box>
         
+    </Box>
+    
+  )
+}
+
+const chatView = () => {
+    return(
+      <Box sx={{ 
+        display: 'flex', 
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: '78vw',
+        height: '95vh',
+        paddingBottom: '20px',
+        overflowY: 'auto',
+      }}>
+        {chatHistory.map(item => 
+          item.type === 'Human' 
+            ? <ChatCard key={item.id} question={item.text} /> 
+            : <AiChatCard key={item.id} response={item.text} />
+        )}
+        <InputBox onSend={generateResponse} />
+      </Box>
+    )
+  }
+
+const handleReturnHome = () => {
+  setShowChat(false)
+  setSelectecdQuestion(null)
+  setChatHistory([])
+}
+
+  return (
+    <Box>
+      {/* {homepageView()} */}
+      {/* {showChat ? chatView() : homepageView()} */}
+      {/* <SideBar 
+        showChat={showChat}
+        setShowChat={setShowChat}
+        setSelectedQuestion={setSelectecdQuestion}
+        setChatHistory={setChatHistory}
+      /> */}
+  
+      {showChat ? (
+        <>
+          {/*  Added a "Return Home" button */}
+          <Button onClick={handleReturnHome}>Return Home</Button>
+          {chatView()}
+        </>
+      ) : (
+        homepageView()
+      )}
     </Box>
   )
 }
