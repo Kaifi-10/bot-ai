@@ -8,7 +8,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 
-function SideBar( { showChat, setShowChat, setSelectedQuestion, setChatHistory }) {
+function SideBar( { showChat, setShowChat, handleReturnHome }) {
     const isMobile = useMediaQuery('(max-width:1100px)')
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
     
@@ -20,11 +20,11 @@ function SideBar( { showChat, setShowChat, setSelectedQuestion, setChatHistory }
         setIsDrawerOpen(open);
     };
 
-    const handleReturnHome = () => {
-        // setShowChat(false)
-        // setSelectedQuestion(null)
-        // setChatHistory([])
-    }
+    // const handleReturnHome = () => {
+    //     // setShowChat(false)
+    //     // setSelectedQuestion(null)
+    //     // setChatHistory([])
+    // }
     const sidebarContent = (
         <Box sx={{
             width: isMobile ? '100%' : '20%',

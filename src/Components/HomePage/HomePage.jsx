@@ -11,7 +11,7 @@ import AiChatCard from '../AiChatCard/AiChatCard'
 import Feedback from '../Feedback/Feedback'
 import SideBar from '../SideBar/SideBar'
 
-function HomePage() {
+function HomePage({ showChat, setShowChat, selectedQuestion, setSelectedQuestion, chatHistory, setChatHistory }) {
 
 
 
@@ -38,12 +38,11 @@ function HomePage() {
     }
   ]
 
-  const [selectedChatId, setSelectedChatId] = useState(null)
+ 
   const [scrollToBottom, setScrollToBottom] = useState(false)
   const [chatId, setChatId] = useState(1)
-  const [selectedQuestion , setSelectecdQuestion] = useState(null)
-  const [showChat, setShowChat] = useState(false)
-  const [chatHistory, setChatHistory] = useState([])
+  // const [selectedQuestion , setSelectecdQuestion] = useState(null)
+ 
 
   const handleDefaultCardClick = (question, response) => {
     setShowChat(true)
@@ -83,7 +82,7 @@ const homepageView = () => {
       paddingBottom: '20px',
       // padding: theme.spacing(2)
       marginTop:{xs:'-90px',  sm:'-110px', md:'-120px', lg: '-220px'},
-      marginLeft:{xs:'450px',  sm:'400px', md:'330px', lg: '0px'},
+      marginLeft:{xs:'450px',  sm:'400px', md:'390px', lg: '0px'},
       paddingBottom: '150px',
       // width: {xs:'90px',  sm:'110px', md:'120px', lg:'134.38px'},
       // height: {xs:'90px',  sm:'115px', md:'125px', lg:'142px'},
@@ -180,7 +179,7 @@ const chatView = () => {
 
 const handleReturnHome = () => {
   setShowChat(false)
-  setSelectecdQuestion(null)
+  setSelectedQuestion(null)
   setChatHistory([])
 }
 
@@ -198,7 +197,7 @@ const handleReturnHome = () => {
       {showChat ? (
         <>
           {/*  Added a "Return Home" button */}
-          <Button onClick={handleReturnHome}>Return Home</Button>
+          {/* <Button onClick={handleReturnHome}>Return Home</Button> */}
           {chatView()}
         </>
       ) : (

@@ -3,8 +3,19 @@ import './App.css';
 import HomePage from './Components/HomePage/HomePage';
 import SideBar from './Components/SideBar/SideBar';
 import Navbar from './Components/Navbar/Navbar';
+import { useState } from 'react';
 
 function App() {
+
+  const [showChat, setShowChat] = useState(false);
+  const [selectedQuestion, setSelectedQuestion] = useState(null);
+  const [chatHistory, setChatHistory] = useState([]);
+
+  const handleReturnHome = () => {
+    setShowChat(false);
+    setSelectedQuestion(null);
+    setChatHistory([]);
+  };
   return (
     <div className="App">
       <Grid container >
@@ -21,7 +32,11 @@ function App() {
               width: '80%',
               }}>  
               
-              <SideBar />
+              <SideBar 
+              showChat={showChat}
+              setShowChat={setShowChat}
+              handleReturnHome={handleReturnHome}
+               />
             </Box>
             <Box sx={{ 
               width: '20%'  
@@ -45,7 +60,14 @@ function App() {
             alignItems: 'center', 
             // background:'linear-gradient(180deg, rgba(215, 199, 244, 0.2) 0%, rgba(151, 133, 186, 0.2) 100%)',
             }}>
-            <HomePage />
+            <HomePage 
+            showChat={showChat}
+            setShowChat={setShowChat}
+            selectedQuestion={selectedQuestion}
+            setSelectedQuestion={setSelectedQuestion}
+            chatHistory={chatHistory}
+            setChatHistory={setChatHistory}
+            />
           </Box>
           
         </Grid>
