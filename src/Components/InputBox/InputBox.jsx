@@ -46,6 +46,7 @@ function InputBox({ onSend }) {
         margin: '20px auto',
         gap: theme.spacing(2),
         padding: theme.spacing(0, 2),
+        marginLeft:{xs:'-40px',  sm:'-45px', md:'-10px', lg: '40px'},
       
       }}
     >

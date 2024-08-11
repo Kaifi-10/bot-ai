@@ -82,8 +82,11 @@ const homepageView = () => {
       height: '95vh',
       paddingBottom: '20px',
       // padding: theme.spacing(2)
-      marginTop: '-220px',
-      paddingBottom: '150px'
+      marginTop:{xs:'-90px',  sm:'-110px', md:'-120px', lg: '-220px'},
+      marginLeft:{xs:'450px',  sm:'400px', md:'330px', lg: '0px'},
+      paddingBottom: '150px',
+      // width: {xs:'90px',  sm:'110px', md:'120px', lg:'134.38px'},
+      // height: {xs:'90px',  sm:'115px', md:'125px', lg:'142px'},
     }}>
 
       <Box sx={{
@@ -116,8 +119,8 @@ const homepageView = () => {
         <Box component='img' src={logo} sx={{
           // width: '134.38px',
           // height: '142px',
-          width: {xs:'90px',  sm:'110px', md:'120px', lg:'134.38px'},
-          height: {xs:'90px',  sm:'115px', md:'125px', lg:'142px'},
+          width: {xs:'90px',  sm:'110px', md:'120px', lg:'114.38px'},
+          height: {xs:'90px',  sm:'115px', md:'125px', lg:'122px'},
           transition: 'width, height 0.3s ease',
           top:' 240px',
           left: '679.72px',
