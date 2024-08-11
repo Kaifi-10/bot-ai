@@ -46,6 +46,7 @@ function InputBox({ onSend }) {
         margin: '20px auto',
         gap: theme.spacing(2),
         padding: theme.spacing(0, 2),
+      
       }}
     >
      <Box
@@ -54,7 +55,7 @@ function InputBox({ onSend }) {
         // Highlight: Added value and onChange props
         value={inputValue}
         onChange={handleInputChange}
-        onKeyPress={handleKeyPress}
+        onKeyDown={handleKeyPress}
         sx={{
           width: {xs:'21%',  sm:'32%', md:'48%', lg:'34%', xl:'100%'},
           marginLeft: { xs: '60px', sm: '55px', md:'65px', lg: '70px', xl: '0' },

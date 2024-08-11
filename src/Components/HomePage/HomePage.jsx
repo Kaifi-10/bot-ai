@@ -82,6 +82,8 @@ const homepageView = () => {
       height: '95vh',
       paddingBottom: '20px',
       // padding: theme.spacing(2)
+      marginTop: '-220px',
+      paddingBottom: '150px'
     }}>
 
       <Box sx={{
@@ -143,7 +145,7 @@ const homepageView = () => {
         <Box sx={{
          
         }}>
-          <InputBox onSend={generateResponse} />
+          {/* <InputBox onSend={generateResponse} /> */}
         </Box>
       </Box>
         
@@ -168,7 +170,7 @@ const chatView = () => {
             ? <ChatCard key={item.id} question={item.text} /> 
             : <AiChatCard key={item.id} response={item.text} />
         )}
-        <InputBox onSend={generateResponse} />
+        {/* <InputBox onSend={generateResponse} /> */}
       </Box>
     )
   }
@@ -199,6 +201,13 @@ const handleReturnHome = () => {
       ) : (
         homepageView()
       )}
+      <Box sx={{
+        marginTop: '-150px',
+        paddingTop: '20px',
+      }}>
+        <InputBox onSend={generateResponse} />
+      </Box>
+      
     </Box>
   )
 }
