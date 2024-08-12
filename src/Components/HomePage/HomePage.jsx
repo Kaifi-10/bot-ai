@@ -82,7 +82,7 @@ const homepageView = () => {
       paddingBottom: '20px',
       // padding: theme.spacing(2)
       marginTop:{xs:'-90px',  sm:'-110px', md:'-120px', lg: '-220px'},
-      marginLeft:{xs:'450px',  sm:'400px', md:'390px', lg: '0px'},
+      marginLeft:{xs:'450px',  sm:'310px', md:'240px', lg: '0px'},
       paddingBottom: '150px',
       // width: {xs:'90px',  sm:'110px', md:'120px', lg:'134.38px'},
       // height: {xs:'90px',  sm:'115px', md:'125px', lg:'142px'},
@@ -166,6 +166,8 @@ const chatView = () => {
         height: '95vh',
         paddingBottom: '20px',
         overflowY: 'auto',
+        marginLeft:{xs:'470px',  sm:'360px', md:'270px', lg: '0px'},
+        marginTop:{xs:'50px',  sm:'70px', md:'50px', lg: '0px'},
       }}>
         {chatHistory.map(item => 
           item.type === 'Human' 
@@ -193,21 +195,23 @@ const handleReturnHome = () => {
         setSelectedQuestion={setSelectecdQuestion}
         setChatHistory={setChatHistory}
       /> */}
-  
-      {showChat ? (
-        <>
-          {/*  Added a "Return Home" button */}
-          {/* <Button onClick={handleReturnHome}>Return Home</Button> */}
-          {chatView()}
-        </>
-      ) : (
-        homepageView()
-      )}
+        <Box className={styles.testing}>
+            {showChat ? (
+            <>
+              {/*  Added a "Return Home" button */}
+              {/* <Button onClick={handleReturnHome}>Return Home</Button> */}
+              {chatView()}
+            </>
+          ) : (
+            homepageView()
+          )}
+        </Box>
+      
       <Box sx={{
         marginTop: '-150px',
         paddingTop: '20px',
       }}>
-        <InputBox onSend={generateResponse} />
+        <InputBox onSend={generateResponse} chatHistory={chatHistory} />
       </Box>
       
     </Box>

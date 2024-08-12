@@ -1,15 +1,16 @@
-import { Box, Button, useTheme, useMediaQuery } from '@mui/material'
+import { Box, Button, useTheme, useMediaQuery, Alert, Snackbar } from '@mui/material'
 import React, { useState } from 'react'
 import styles from './InputBox.module.css'
 
 // Highlight: Added onSend prop
-function InputBox({ onSend }) {
+function InputBox({ onSend, chatHistory  }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
 
   // Highlight: Added state for input value
   const [inputValue, setInputValue] = useState('');
+  const [openSnackbar, setOpenSnackbar] = useState(false);
 
   // Highlight: Added handleInputChange function
   const handleInputChange = (event) => {
@@ -32,6 +33,26 @@ function InputBox({ onSend }) {
     if (event.key === 'Enter') {
       handleSend();
     }
+  };
+
+  const handleSave = () => {
+    if (chatHistory && chatHistory.length > 0) {
+      const savedChats = JSON.parse(localStorage.getItem('savedChats') || '[]');
+      const newSavedChat = {
+        id: Date.now(),
+        chatHistory: chatHistory
+      };
+      savedChats.push(newSavedChat);
+      localStorage.setItem('savedChats', JSON.stringify(savedChats));
+      // alert('Chat history saved successfully!');
+      setOpenSnackbar(true);
+    } else {
+      alert('No chat history to save.');
+    }
+  };
+
+  const handleCloseSnackbar = () => {
+    setOpenSnackbar(false);
   };
 
   return (
@@ -102,9 +123,23 @@ function InputBox({ onSend }) {
           sx={{
             width: {xs:'20%', md:'40%', sm:'60%', lg:'50%', xl:'100%'},
           }}
+          onClick={handleSave}
         >
           Save
         </Button>
+
+        <Snackbar
+        open={openSnackbar}
+        autoHideDuration={3000}
+        onClose={handleCloseSnackbar}
+        
+      > 
+       <Alert onClose={handleCloseSnackbar} severity="success">
+          Chat saved successfully!
+          <br/ >
+          Check Past Conversation
+        </Alert>
+      </Snackbar>
       </Box>
     </Box>
   )
