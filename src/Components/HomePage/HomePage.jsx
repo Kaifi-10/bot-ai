@@ -1,5 +1,5 @@
 import { Box, Button, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import logo from '../../assets/bot.png'
 import DefaultCard from '../DefaultCard/DefaultCard'
 import styles from './HomePage.module.css'
@@ -42,7 +42,23 @@ function HomePage({ showChat, setShowChat, selectedQuestion, setSelectedQuestion
   const [scrollToBottom, setScrollToBottom] = useState(false)
   const [chatId, setChatId] = useState(1)
   // const [selectedQuestion , setSelectecdQuestion] = useState(null)
+  const [currentRating, setCurrentRating] = useState(0);
+  const [currentFeedback, setCurrentFeedback] = useState('');
+  const [ratingsAndFeedback, setRatingsAndFeedback] = useState({});
+
+  const handleRatingAndFeedback = useCallback((id, rating, feedback) => {
+    setRatingsAndFeedback(prev => ({
+        ...prev,
+        [id]: { rating, feedback }
+    }));
+}, []);
  
+  // const handleRatingAndFeedback = (rating, feedback) => {
+  //   // console.log(' Homepage:->  Rating:', rating, 'Feedback:', feedback);
+  //   setCurrentRating(rating);
+  //   setCurrentFeedback(feedback);
+    
+  // };
 
   const handleDefaultCardClick = (question, response) => {
     setShowChat(true)
@@ -172,7 +188,13 @@ const chatView = () => {
         {chatHistory.map(item => 
           item.type === 'Human' 
             ? <ChatCard key={item.id} question={item.text} /> 
-            : <AiChatCard key={item.id} response={item.text} />
+            :  <AiChatCard 
+            key={item.id}
+            id={item.id}
+            response={item.text} 
+            localRating={(id, rating) => handleRatingAndFeedback(id, rating, ratingsAndFeedback[id]?.feedback || '')}
+            localFeedback={(id, feedback) => handleRatingAndFeedback(id, ratingsAndFeedback[id]?.rating || 0, feedback)}
+          />
         )}
         {/* <InputBox onSend={generateResponse} /> */}
       </Box>
@@ -211,7 +233,13 @@ const handleReturnHome = () => {
         marginTop: '-150px',
         paddingTop: '20px',
       }}>
-        <InputBox onSend={generateResponse} chatHistory={chatHistory} />
+        <InputBox 
+        onSend={generateResponse} 
+        chatHistory={chatHistory}  
+        currentRating={currentRating}
+        currentFeedback={currentFeedback}
+        ratingsAndFeedback={ratingsAndFeedback}
+        />
       </Box>
       
     </Box>

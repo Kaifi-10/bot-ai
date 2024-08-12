@@ -1,23 +1,19 @@
 import { Box, Button, useTheme, useMediaQuery, Alert, Snackbar } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './InputBox.module.css'
 
-// Highlight: Added onSend prop
-function InputBox({ onSend, chatHistory  }) {
+function InputBox({ onSend, chatHistory, currentRating, currentFeedback, ratingsAndFeedback   }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
 
-  // Highlight: Added state for input value
   const [inputValue, setInputValue] = useState('');
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
-  // Highlight: Added handleInputChange function
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
 
-  // Highlight: Added handleSend function
   const handleSend = () => {
     if (inputValue.trim()) {
       if (typeof onSend === 'function') {
@@ -35,12 +31,31 @@ function InputBox({ onSend, chatHistory  }) {
     }
   };
 
+  useEffect(() => {
+    if (currentRating !== 0 || currentFeedback !== '') {
+      const savedChats = JSON.parse(localStorage.getItem('savedChats') || '[]');
+      if (savedChats.length > 0) {
+        const lastChat = savedChats[savedChats.length - 1];
+        lastChat.rating = currentRating;
+        lastChat.feedback = currentFeedback;
+        localStorage.setItem('savedChats', JSON.stringify(savedChats));
+      }
+    }
+  }, [currentRating, currentFeedback]);
+
   const handleSave = () => {
     if (chatHistory && chatHistory.length > 0) {
       const savedChats = JSON.parse(localStorage.getItem('savedChats') || '[]');
       const newSavedChat = {
         id: Date.now(),
-        chatHistory: chatHistory
+        // chatHistory: chatHistory,
+        // rating: currentRating,
+        // feedback: currentFeedback
+        chatHistory: chatHistory.map(item => ({
+          ...item,
+          rating: ratingsAndFeedback[item.id]?.rating || Number(localStorage.getItem(`rating_${item.id}`)) || 0,
+          feedback: ratingsAndFeedback[item.id]?.feedback || ''
+        }))
       };
       savedChats.push(newSavedChat);
       localStorage.setItem('savedChats', JSON.stringify(savedChats));
@@ -108,7 +123,6 @@ function InputBox({ onSend, chatHistory  }) {
           variant='contained' 
           className={styles.inputButton}
           fullWidth={isMobile}
-          // Highlight: Added onClick handler
           onClick={handleSend}
           sx={{
             width: {xs:'20%', md:'40%', sm:'60%', lg:'50%', xl:'100%'},
