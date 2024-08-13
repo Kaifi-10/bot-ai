@@ -75,8 +75,12 @@ function SideBar( { showChat, setShowChat, handleReturnHome }) {
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
+                        color:'#414146',
+                        ":hover": {
+                            bgcolor: 'linear-gradient(90deg, #BFACE2 0%, #D7C7F4 100%)',
+                        }
                     }}>
-                        <Typography>
+                        <Typography className={styles.pastConversations}>
                             Past Conversations
                         </Typography>
                     </Box>

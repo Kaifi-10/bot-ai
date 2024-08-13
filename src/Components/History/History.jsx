@@ -5,6 +5,7 @@ import ChatCard from "../ChatCard/ChatCard";
 import AiChatCard from "../AiChatCard/AiChatCard";
 import AiHistoryCard from "./AiHistoryCard";
 import { format, isEqual, startOfDay, add } from 'date-fns'
+import styles from './History.module.css'
 
 
 const getInitialChats = () => {
@@ -55,7 +56,7 @@ export default function History() {
       }}
     >
       <Box p={{ xs: 2, md: 3 }}>
-        <Typography variant="h2" textAlign={"center"} mb={3} marginTop={"25px"}>
+        <Typography variant="h2" textAlign={"center"} mb={3} marginTop={"25px"} className={styles.historyHeading}>
           Conversation History
         </Typography>
         <Box sx={{

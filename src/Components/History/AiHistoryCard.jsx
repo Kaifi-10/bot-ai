@@ -1,6 +1,6 @@
 import { Box, Modal, Rating, Stack, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import styles from '../AiChatCard/AiChatCard.module.css'
+import styles from './History.module.css'
 import aiChat from '../../assets/newchat.png'
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
@@ -20,19 +20,19 @@ function AiHistoryCard({response, localFeedback, localRating, id, initialRating,
     })
     return (
         <Box>
-            <Box className={styles.chatCardardContainer}>
+            <Box className={styles.historyChatCardardContainer}>
                 {type === "Human" ? (
-                     <Box component='img' src={person} alt='person' className={styles.cardPerson} />
+                     <Box component='img' src={person} alt='person' className={styles.historyCardPerson} />
                 ) : (
-                    <Box component='img' src={aiChat} alt='person' className={styles.cardPerson} />
+                    <Box component='img' src={aiChat} alt='person' className={styles.historyCardPerson} />
                 ) }
                 
-                <Box className={styles.chatCardardText}>
+                <Box className={styles.historyChatCardardText}>
                     <Typography>
                         {type === "Human" ? "You" : "Soul AI"}
                        
                     </Typography>
-                    <Typography className={styles.contentText}>
+                    <Typography className={styles.historyContentText}>
                         {type === "Human" ? response : response}
                         {/* {response} */}
                     </Typography>
