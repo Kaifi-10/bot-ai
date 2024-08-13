@@ -2,6 +2,7 @@
 
 # BOT-AI - Chat Application with Sample Data
 ![](src\assets\bot-ai-1.gif)
+![alt text](src/assets/bot-ai-1.gif)
 
 ## The App
 
