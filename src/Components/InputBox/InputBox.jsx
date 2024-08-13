@@ -55,7 +55,9 @@ function InputBox({ onSend, chatHistory, currentRating, currentFeedback, ratings
           ...item,
           rating: ratingsAndFeedback[item.id]?.rating || Number(localStorage.getItem(`rating_${item.id}`)) || 0,
           feedback: ratingsAndFeedback[item.id]?.feedback || ''
-        }))
+        })),
+        date: new Date().toDateString(),
+        time: new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }),
       };
       savedChats.push(newSavedChat);
       localStorage.setItem('savedChats', JSON.stringify(savedChats));

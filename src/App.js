@@ -4,6 +4,8 @@ import HomePage from './Components/HomePage/HomePage';
 import SideBar from './Components/SideBar/SideBar';
 import Navbar from './Components/Navbar/Navbar';
 import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route  } from 'react-router-dom';
+import History from './Components/History/History';
 
 function App() {
 
@@ -17,7 +19,9 @@ function App() {
     setChatHistory([]);
   };
   return (
-    <div className="App">
+    <Router>
+
+<div className="App">
       <Grid container >
         
         <Grid item xs={2}>
@@ -60,19 +64,27 @@ function App() {
             alignItems: 'center', 
             // background:'linear-gradient(180deg, rgba(215, 199, 244, 0.2) 0%, rgba(151, 133, 186, 0.2) 100%)',
             }}>
-            <HomePage 
-            showChat={showChat}
-            setShowChat={setShowChat}
-            selectedQuestion={selectedQuestion}
-            setSelectedQuestion={setSelectedQuestion}
-            chatHistory={chatHistory}
-            setChatHistory={setChatHistory}
-            />
+            <Routes>
+                <Route path="/" element={
+                  <HomePage 
+                    showChat={showChat}
+                    setShowChat={setShowChat}
+                    selectedQuestion={selectedQuestion}
+                    setSelectedQuestion={setSelectedQuestion}
+                    chatHistory={chatHistory}
+                    setChatHistory={setChatHistory}
+                  />
+                } />
+                <Route path="/history" element={<History />} />
+              </Routes>
           </Box>
           
         </Grid>
       </Grid>
     </div>
+
+    </Router>
+    
   );
 }
 

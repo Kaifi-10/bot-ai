@@ -7,6 +7,7 @@ import edit from '../../assets/edit.png'
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
+import { Link } from 'react-router-dom';
 
 function SideBar( { showChat, setShowChat, handleReturnHome }) {
     const isMobile = useMediaQuery('(max-width:1100px)')
@@ -33,6 +34,7 @@ function SideBar( { showChat, setShowChat, handleReturnHome }) {
             flexDirection: 'column',
             boxShadow: "0px 4px 4px 0px #00000040"
         }}>
+            <Link to='/' style={{ textDecoration: 'none' }}>
             <Box className={styles.navbar}>
                 <Box component='img' src={logo} alt='logo' width={45} sx={{
                     marginLeft: '10px',
@@ -40,14 +42,19 @@ function SideBar( { showChat, setShowChat, handleReturnHome }) {
                     borderRadius: '10px',
                 }}
                 />
-                <Typography className={styles.newChat} >
-                    New Chat
-                </Typography>
-                <Button onClick={handleReturnHome}>
-                <Box component='img' src={edit} alt='logo' />
+                
+                    <Typography className={styles.newChat} >
+                        New Chat
+                    </Typography>
+                    <Button onClick={handleReturnHome}>
+                    <Box component='img' src={edit} alt='logo' />
                 </Button>
                 
+                
+                
+                
             </Box>
+            </Link>
             <Box sx={{
                 bgcolor: '#fff',
                 flexGrow: 1,
@@ -58,19 +65,23 @@ function SideBar( { showChat, setShowChat, handleReturnHome }) {
                 alignItems: 'center',
                 paddingTop: '20px',
             }}>
-                <Box sx={{
-                    width: '175px',
-                    height: '40px',
-                    borderRadius: '10px',
-                    bgcolor: '#D7C7F4',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                }}>
-                    <Typography>
-                        Past Conversations
-                    </Typography>
-                </Box>
+
+                <Link to='/history' style={{ textDecoration: 'none' }}>
+                    <Box sx={{
+                        width: '175px',
+                        height: '40px',
+                        borderRadius: '10px',
+                        bgcolor: '#D7C7F4',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}>
+                        <Typography>
+                            Past Conversations
+                        </Typography>
+                    </Box>
+                </Link>
+                
             </Box>
         </Box>
     )
