@@ -91,7 +91,6 @@ function InputBox({ onSend, chatHistory, currentRating, currentFeedback, ratings
      <Box
         component='input'
         placeholder='Ask your question here...'
-        // Highlight: Added value and onChange props
         value={inputValue}
         onChange={handleInputChange}
         onKeyDown={handleKeyPress}

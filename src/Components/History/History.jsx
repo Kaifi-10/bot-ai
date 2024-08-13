@@ -98,24 +98,24 @@ export default function History() {
               <Divider sx={{ borderColor: "primary.bg", opacity: 0.4 }} />
             }
           >
-            {/* Highlight: Updated to match the new data structure */}
+            
             {filteredChats.map((chat, chatIndex) => (
               <Box key={chat.id}>
                 <Typography variant="h6">
                     {formatDate(chat.date)}
                 </Typography>
                 {chat.chatHistory.map((item) => (
-                  // Highlight: Conditional rendering based on type
+                  
                   <Box key={item.id}>
                     {item.type === "Human" ? (
                     //   <ChatCard question={item.text} />
                     <AiHistoryCard 
                         type={item.type}
                         response={item.text} 
-                        localFeedback={() => {}}  // Disabled for read-only
-                        localRating={() => {}}    // Disabled for read-only
-                        initialRating={item.rating}  // Updated
-                        initialFeedback={item.feedback}  // Updated
+                        localFeedback={() => {}}  
+                        localRating={() => {}}    
+                        initialRating={item.rating}  
+                        initialFeedback={item.feedback}  
                         id={item.id}
                         date = {chat.date}
                         time = {chat.time}
@@ -124,10 +124,10 @@ export default function History() {
                       <AiHistoryCard 
                         type={item.type}
                         response={item.text} 
-                        localFeedback={() => {}}  // Disabled for read-only
-                        localRating={() => {}}    // Disabled for read-only
-                        initialRating={item.rating}  // Updated
-                        initialFeedback={item.feedback}  // Updated
+                        localFeedback={() => {}}  
+                        localRating={() => {}}    
+                        initialRating={item.rating}  
+                        initialFeedback={item.feedback}  
                         id={item.id}
                         date = {chat.date}
                         time = {chat.time}
